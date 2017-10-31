@@ -18,6 +18,7 @@ class CreateTheAuthorsTable extends Migration
             
             $table->string('name', 127)->nullable();
             $table->string('year_of_birth', 9)->nullable();
+            $table->text('biography')->nullable();
 
             $table->timestamps();
         });
