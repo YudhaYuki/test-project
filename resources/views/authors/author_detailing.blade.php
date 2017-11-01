@@ -12,4 +12,4 @@
 
 @endsection
 
-@section('page_title') AYN RAND @endsection
+@section('page_title') {{ $author->name }} {{ $author->year_of_birth }}  @endsection

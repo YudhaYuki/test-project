@@ -20,13 +20,15 @@ class authorController extends Controller
         return $view;
     }
 
-    public function author_detail()
+    public function author_detail($id)
     {
         $view = view('authors/author_detailing');
 
-        $author = TheAuthor::find(1);
+        $author = TheAuthor::find($id);
 
         $view->author = $author;
+
+        return $view;
     }
 
     public function insert_new_author()
@@ -46,5 +48,65 @@ class authorController extends Controller
         //happily inform the user
         return 'Movie was saved!';
     }
+
+    public function create_author()
+    {
+        $view = view('authors/author_edit');
+
+        return $view;
+    }
+
+    public function store($id = null)
+    {
+        $request = request();
+
+        if($request->has('name'))
+        {
+            $name = $request->input('name');
+        }
+
+        $request->all(); // all request data
+        
+        $request_data = $request->only([ // only those request items that are present in the array
+            'name',
+            'year_of_birth',
+            'biography'
+        ]);
+        
+        $request_data = $request->except([ // everything except the items that are present in the array
+            '_toke',
+            'biography'
+        ]);
+        
+        dd($request_data);
+        
+        // create new object of class Movie
+        $author = new TheAuthor();
+
+        $author->fill($request->all());        
+
+        // add some data from request into this object
+        $author>fill($request->only([
+            'name',
+            'year_of_birth',
+            'biography'
+        ]));
+
+        dd($author);
+
+
+        // $author-save();
+    }
+
+    public function edit($id)
+    {
+        $author = TheAuthor::findOrFail($id);
+
+        $view = view('authors/edit'); 
+        $view->author = $author;
+        
+        return $view;
+    }
+
 
 }

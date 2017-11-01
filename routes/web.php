@@ -27,3 +27,12 @@ Route::get('/authors/author/{id}', 'authorController@author_detail')->name('auth
 
 Route::get('/authors/author/insert_new_author', 'authorController@insert_new_author');
 
+
+
+
+
+Route::get('/authors/new', 'authorController@create_author');
+
+Route::post('/authors/new', 'authorController@store');
+
+
