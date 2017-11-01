@@ -13,16 +13,20 @@ class authorController extends Controller
     {
         $view = view('authors/author_listing');
 
-        $all_authors = TheAuthor::all();
+        $all_authors = TheAuthor::orderBy('name', 'asc')->get();
+
         $view->authors = $all_authors;
-        
+
         return $view;
     }
 
     public function author_detail()
     {
         $view = view('authors/author_detailing');
-        return $view;
+
+        $author = TheAuthor::find(1);
+
+        $view->author = $author;
     }
 
     public function insert_new_author()

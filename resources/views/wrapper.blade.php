@@ -14,7 +14,9 @@
 
         <a href="{{ action('authorController@author_list') }}">List of authors</a>
 
-        <a href="{{ action('authorController@author_detail') }}">Detail of authors</a>
+        <a href="{{ action('authorController@author_detail', ['id' => 1]) }}">Detail of authors A</a>
+
+        <a href="{{ route('author detail', ['id' => 1]) }}">Detail of authors B</a>
 
     </nav>
 
