@@ -78,24 +78,25 @@ class authorController extends Controller
             'biography'
         ]);
         
-        dd($request_data);
         
         // create new object of class Movie
         $author = new TheAuthor();
 
         $author->fill($request->all());        
+        $author->save();
 
+        // we can also use this instead of $author->fill($request->all()); 
         // add some data from request into this object
-        $author>fill($request->only([
-            'name',
-            'year_of_birth',
-            'biography'
-        ]));
+        // $author->fill($request->only([
+        //     'name',
+        //     'year_of_birth',
+        //     'biography'
+        // ]));
 
         dd($author);
 
 
-        // $author-save();
+        
     }
 
     public function edit($id)

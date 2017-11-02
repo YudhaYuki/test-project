@@ -22,7 +22,7 @@
 
         <!-- OR THIS WAY BELOW -->
 
-        <a href="{{ url('') }}">Home</a>
+        <a href="/">Home</a>
 
         <a href="{{ action('authorController@author_list') }}">List of authors</a>
 
@@ -30,15 +30,16 @@
 
         <a href="{{ route('author detail', ['id' => 1]) }}">AYN RAND</a>
 
-        <a href="{{ action('authorController@create_author) }}">New author</a>
+        <a href="{{ action('authorController@create_author') }}">New author</a>
 
     </nav>
 
     @if(session()->has('success_message'))
-    <div class="alert alert-success">
+        <div class="alert alert-success">
             {{ session()->get('success_message') }}
         </div>
     @endif
+
 
 
     
