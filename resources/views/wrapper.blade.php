@@ -28,7 +28,7 @@
 
         <!-- <a href="{{ action('authorController@author_detail', ['id' => 1]) }}">Detail of authors A</a> -->
 
-        <a href="{{ route('author detail', ['id' => 1]) }}">AYN RAND</a>
+        <!-- <a href="{{ route('author detail', ['id' => 1]) }}">AYN RAND</a> -->
 
         <a href="{{ action('authorController@create_author') }}">New author</a>
 

@@ -53,49 +53,68 @@ class authorController extends Controller
     {
         $view = view('authors/author_edit');
 
+        $view->author = new TheAuthor();
+
         return $view;
     }
 
     public function store($id = null)
     {
-        $request = request();
+        // $request = request();
 
-        if($request->has('name'))
-        {
-            $name = $request->input('name');
-        }
+        // if($request->has('name'))
+        // {
+        //     $name = $request->input('name');
+        // }
 
-        $request->all(); // all request data
+        // $request->all(); // all request data
         
-        $request_data = $request->only([ // only those request items that are present in the array
-            'name',
-            'year_of_birth',
-            'biography'
-        ]);
-        
-        $request_data = $request->except([ // everything except the items that are present in the array
-            '_toke',
-            'biography'
-        ]);
-        
-        
-        // create new object of class Movie
-        $author = new TheAuthor();
-
-        $author->fill($request->all());        
-        $author->save();
-
-        // we can also use this instead of $author->fill($request->all()); 
-        // add some data from request into this object
-        // $author->fill($request->only([
+        // $request_data = $request->only([ // only those request items that are present in the array
         //     'name',
         //     'year_of_birth',
         //     'biography'
-        // ]));
+        // ]);
+        
+        // $request_data = $request->except([ // everything except the items that are present in the array
+        //     '_toke',
+        //     'biography'
+        // ]);
+        
+        
+        // // create new object of class Movie
+        // $author = new TheAuthor();
 
-        dd($author);
+        // $author->fill($request->all());        
+        // $author->save();
 
+        // // we can also use this instead of $author->fill($request->all()); 
+        // // add some data from request into this object
+        // // $author->fill($request->only([
+        // //     'name',
+        // //     'year_of_birth',
+        // //     'biography'
+        // // ]));
 
+        // dd($author);
+
+        if($id)
+        {
+            $author = TheAuthor::findOrFail($id);
+        }
+        else
+        {
+            $author = new TheAuthor();
+        }
+      
+        $author->fill(request()->only([
+            'name',
+            'year_of_birth',
+            'biography'
+        ]));
+
+        $author->save();
+
+        return redirect( action('authorController@edit', $id) );
         
     }
 
@@ -103,11 +122,13 @@ class authorController extends Controller
     {
         $author = TheAuthor::findOrFail($id);
 
-        $view = view('authors/edit'); 
+        $view = view('authors/author_edit'); 
         $view->author = $author;
         
         return $view;
     }
+
+
 
 
 }

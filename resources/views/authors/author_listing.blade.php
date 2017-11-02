@@ -10,13 +10,15 @@
 
 <ul>
 
-@foreach($authors as $author)
+<!--
+    @foreach($authors as $author)
 
     <li>
         {{ $author->name }} ({{ $author->year_of_birth }})
     </li>
 
-    <!-- <li>AYN RAND</li>
+    
+    <li>AYN RAND</li>
     <li>ERNEST HEMINGWAY</li>
     <li>JOAN DIDION</li>
     <li>RAY BRADBURY</li>
@@ -27,9 +29,20 @@
     <li>MARK TWAIN</li>
     <li>MEG WOLITZER</li>
     <li>ERIK LARSON</li>
-    <li>F. SCOTT FITZGERALD</li> -->
+    <li>F. SCOTT FITZGERALD</li> 
+    
 
 @endforeach
+-->
+
+@foreach($authors as $author)
+        <li>
+            <a href="{{ route('author detail', ['id' => $author->id]) }}">
+            {{ $author->name }} ({{ $author->year_of_birth }})
+            </a>
+        </li>
+    @endforeach
+
 
 </ul>
 

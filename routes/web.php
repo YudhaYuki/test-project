@@ -36,3 +36,11 @@ Route::get('/authors/new', 'authorController@create_author');
 Route::post('/authors/new', 'authorController@store');
 
 
+
+
+Route::get('/authors/edit/{id}', 'authorController@edit');
+
+Route::post('/authors/edit/{id}', 'authorController@store');
+
+
+
